@@ -43,3 +43,18 @@ spec:
     app: app-b
 
 
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-b-service-clusterip
+  labels:
+    service: app-b-clusterip
+spec:
+  selector:
+    app: app-b
+  ports:
+    - name: node
+      protocol: TCP
+      port: 8080
