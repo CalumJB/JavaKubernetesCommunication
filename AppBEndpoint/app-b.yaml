@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-b-deployment
+  labels:
+    app: app-b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-b
+  template:
+    metadata:
+      labels:
+        app: app-b
+    spec:
+      containers:
+        - name: app-b-endpoint
+          image: app-b
+          env:
+            - name: PASSED_VALUE
+              value: "12345"
+            - name: SERVER_PORT
+              value: "8080"
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-b-nodeport
+  labels:
+    service: app-b-nodeport
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+  selector:
+    app: app-b-deployment
