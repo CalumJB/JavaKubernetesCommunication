@@ -1,0 +1,7 @@
+This project was created as a vehicle to help me learn about networking in kubernetes
+A NodePort exposes App A outside of the cluster. Using this, a Http get request is made
+which in-turn makes a call to App B to get some data. The communication between App A
+and App B is considered pods-to-pod communication and a ClusterIp Service is used
+to enable App A to access the port that App B is running on.
+
+The project can be built using the yaml files.
