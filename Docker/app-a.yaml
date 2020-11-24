@@ -16,8 +16,7 @@ spec:
     spec:
       containers:
         - name: app-a
-          image: app-a
-          imagePullPolicy: Never
+          image: cboustead/networking-app-a:1.0
           env:
             - name: PASSED_VALUE
               value: "12345"
