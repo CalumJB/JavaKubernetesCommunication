@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-a-deployment
+  labels:
+    app: app-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-a
+  template:
+    metadata:
+      labels:
+        app: app-a
+    spec:
+      containers:
+        - name: app-a
+          image: app-a
+          imagePullPolicy: Never
+          env:
+            - name: PASSED_VALUE
+              value: "12345"
+            - name: SERVER_PORT
+              value: "8080"
+            - name: APP_B_IP
+              value: "10.98.33.90"
+            - name: APP_B_PORT
+              value: "8087"
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-a-nodeport
+  labels:
+    service: app-a-nodeport
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+  selector:
+    app: app-a
+
+
+
+

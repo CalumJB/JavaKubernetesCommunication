@@ -22,13 +22,14 @@ spec:
             - name: PASSED_VALUE
               value: "12345"
             - name: SERVER_PORT
-              value: "8080"
+              value: "8087"
           ports:
-            - containerPort: 8080
+            - containerPort: 8087
               protocol: TCP
 
 ---
 
+# Not required for functionality but useful for checking that app b is running
 apiVersion: v1
 kind: Service
 metadata:
@@ -38,7 +39,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 8080
+    - port: 8087
   selector:
     app: app-b
 
@@ -57,4 +58,4 @@ spec:
   ports:
     - name: node
       protocol: TCP
-      port: 8080
+      port: 8087
