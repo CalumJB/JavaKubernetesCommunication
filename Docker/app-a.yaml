@@ -23,7 +23,7 @@ spec:
             - name: SERVER_PORT
               value: "8080"
             - name: APP_B_IP
-              value: "10.98.33.90"
+              value: "app-b-service-clusterip.default.svc.cluster.local"
             - name: APP_B_PORT
               value: "8087"
           ports:
